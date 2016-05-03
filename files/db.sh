@@ -20,6 +20,6 @@ curl -k https://ip-10-90-30-108.ap-southeast-2.compute.internal:8140/packages/cu
 
 /opt/puppetlabs/puppet/bin/gem install --no-ri --no-rdoc retries aws-sdk-core
 
-/opt/puppetlabs/bin/puppet --enable
+/opt/puppetlabs/bin/puppet agent --enable
 
 /opt/puppetlabs/bin/puppet agent -t
