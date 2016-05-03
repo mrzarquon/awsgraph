@@ -57,6 +57,7 @@ class awsgraph {
     subnets              => ['tse-ap-southeast-2-avza', 'tse-ap-southeast-2-avzb'],
     instances            => ['web-frontend-01', 'web-frontend-02'],
     security_groups      => ['forge_frontend'],
+
     listeners            => [{
       protocol           => 'HTTP',
       load_balancer_port => 80,
@@ -64,6 +65,7 @@ class awsgraph {
       instance_port      => 80,
     }],
     tags => $aws_tags,
+    require => Ec2_Securitygroup['forge_frontend'],
   }
 
   elb_loadbalancer { 'backend':
@@ -79,6 +81,7 @@ class awsgraph {
       instance_port      => 80,
     }],
     tags => $aws_tags,
+    require => Ec2_Securitygroup['forge_backend'],
   }
 
   Ec2_Instance {

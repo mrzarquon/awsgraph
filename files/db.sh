@@ -18,7 +18,7 @@ YAML
 
 curl -k https://ip-10-90-30-108.ap-southeast-2.compute.internal:8140/packages/current/install.bash | /bin/bash -s agent:certname=$PP_INSTANCE_ID
 
-/opt/puppetlabs/puppet/bin gem install --no-ri --no-rdoc retries aws-sdk-core
+/opt/puppetlabs/puppet/bin/gem install --no-ri --no-rdoc retries aws-sdk-core
 
 /opt/puppetlabs/bin/puppet --enable
 
