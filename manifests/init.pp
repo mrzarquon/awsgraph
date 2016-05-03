@@ -25,6 +25,7 @@ class awsgraph {
       },
     ],
     tags => $aws_tags,
+    tag => ['security'],
   }
 
   ec2_securitygroup { 'forge_backend':
@@ -50,6 +51,7 @@ class awsgraph {
       },
     ],
     tags => $aws_tags,
+    tag => ['security'],
   }
 
   elb_loadbalancer { 'frontend':
@@ -103,25 +105,25 @@ class awsgraph {
     subnet            => 'tse-ap-southeast-2-avza',
     require           => Elb_Loadbalancer['backend'],
     before            => Elb_Loadbalancer['frontend'],
-    user_data         => 'puppet:///modules/awsgraph/web.sh',
+    user_data         => file('awsgraph/web.sh'),
   }
   ec2_instance { 'web-frontend-02':
     availability_zone => 'ap-southeast-2b',
     subnet            => 'tse-ap-southeast-2-avzb',
     require           => Elb_Loadbalancer['backend'],
     before            => Elb_Loadbalancer['frontend'],
-    user_data         => 'puppet:///modules/awsgraph/web.sh',
+    user_data         => file('awsgraph/web.sh'),
   }
   ec2_instance { 'web-backend-01':
     availability_zone => 'ap-southeast-2a',
     subnet            => 'tse-ap-southeast-2-avza',
     before            => Elb_Loadbalancer['backend'],
-    user_data         => 'puppet:///modules/awsgraph/db.sh',
+    user_data         => file('awsgraph/db.sh'),
   }
   ec2_instance { 'web-backend-02':
     availability_zone => 'ap-southeast-2b',
     subnet            => 'tse-ap-southeast-2-avzb',
     before            => Elb_Loadbalancer['backend'],
-    user_data         => 'puppet:///modules/awsgraph/db.sh',
+    user_data         => file('awsgraph/db.sh'),
   }
 }
