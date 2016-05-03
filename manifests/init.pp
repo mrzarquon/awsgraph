@@ -3,6 +3,7 @@ class awsgraph {
   $aws_tags = {
     'department' => 'tse',
     'created_by' => 'chrisbarker',
+    'project' => 'sydney-puppetcamp'
   }
 
 
