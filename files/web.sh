@@ -1,11 +1,13 @@
-#!/bin/bash
+#!/bin/bash -x
+
+echo "Installing Puppet"
 
 PP_INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
 PP_IMAGE_NAME=$(curl -s http://169.254.169.254/latest/meta-data/ami-id)
 
 mkdir -p /opt/puppetlabs/puppet/cache/state/
 
-echo "agent provision lock" > /opt/puppetlabs/puppet/cache/state/agent_disabled.lock
+touch /opt/puppetlabs/puppet/cache/state/agent_disabled.lock
 
 mkdir -p /etc/puppetlabs/puppet/
 
